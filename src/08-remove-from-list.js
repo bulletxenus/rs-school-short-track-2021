@@ -17,8 +17,20 @@
  * }
  */
 
-function removeKFromList(/* l, k */) {
-  throw new Error('Not implemented');
+function removeKFromList(l, k) {
+  let m = l;
+  let listNext;
+  function listEbany(list) {
+    if (list.next === null) return;
+    if (list.value === k) {
+      // eslint-disable-next-line no-unused-expressions
+      listNext ? listNext.next = list.next : m = list.next;
+    }
+    listNext = list;
+    listEbany(list.next);
+  }
+  listEbany(m);
+  return m;
 }
 
 module.exports = removeKFromList;
